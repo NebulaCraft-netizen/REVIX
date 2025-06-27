@@ -1,11 +1,10 @@
-// ==== Welcome Popup ====
+// === Welcome popup ===
 function closePopup() {
-  const popup = document.getElementById("welcomePopup");
-  popup.style.display = "none";
+  document.getElementById("welcomePopup").style.display = "none";
 }
 
-// ==== Real-Time Minecraft Player Count ====
-const serverIP = "revixmc.net"; // Replace with your actual server IP or domain
+// === Real-time Minecraft player counter ===
+const serverIP = "revixmc.net"; // Replace with your actual IP or domain
 const playerCountElement = document.getElementById("playerCount");
 
 async function updatePlayerCount() {
@@ -20,10 +19,10 @@ async function updatePlayerCount() {
     }
   } catch (error) {
     playerCountElement.textContent = "Error";
-    console.error("Failed to fetch player count:", error);
+    console.error("Player count fetch failed:", error);
   }
 }
 
-// Run immediately and refresh every 10 seconds
+// Run now and update every 10 seconds
 updatePlayerCount();
 setInterval(updatePlayerCount, 10000);
