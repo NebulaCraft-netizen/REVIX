@@ -133,24 +133,17 @@
     ⚠️ <strong>RevixMC is not released yet.</strong> Join our Discord for early access and giveaways!
   </div>
 
-  <!-- Main Section -->
+  <!-- ❗ Why Not Released Section -->
+  <div class="scroll-section reveal">
+    <h2>❓ Why Isn't RevixMC Released Yet?</h2>
+    <p>We're still working on making everything perfect — the Lifesteal system, lag-free PvP, and anti-cheat protections. We want it to be the best for YOU when we launch. Stay tuned and follow our Discord to be the first to know when we're live!</p>
+  </div>
+
+  <!-- Main Centered Content -->
   <div class="centered reveal">
     <h1>Dominate. Defend. Destroy.</h1>
     <p>Welcome to <strong>RevixMC</strong> — a next-gen Minecraft PvP server built for true warriors.</p>
     <p>Currently Online: <span id="playerCount">Loading...</span></p>
-  </div>
-
-  <!-- Info Section -->
-  <div class="scroll-section reveal">
-    <h2>Why Isn't RevixMC Released Yet?</h2>
-    <p>
-      We're working hard to polish the experience — testing mechanics, optimizing lifesteal combat, and building infrastructure that can handle intense PvP action.
-    </p>
-    <br />
-    <h2>What Is RevixMC?</h2>
-    <p>
-      RevixMC is a pure <strong>Lifesteal-only</strong> Minecraft server. Kill players to steal their hearts. Raid, betray, or ally — all in a high-stakes, no-reset PvP world. No kits. No pay-to-win. Just raw skill and survival.
-    </p>
   </div>
 
   <!-- Discord Section -->
@@ -186,7 +179,7 @@
     updatePlayerCount();
     setInterval(updatePlayerCount, 10000);
 
-    // Scroll reveal animation
+    // Scroll animation
     function revealOnScroll() {
       const reveals = document.querySelectorAll('.reveal');
       for (const el of reveals) {
