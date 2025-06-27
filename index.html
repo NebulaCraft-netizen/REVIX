@@ -38,8 +38,10 @@
     }
 
     .scroll-section {
-      margin-top: 80px;
+      margin: 100px auto;
+      max-width: 900px;
       text-align: center;
+      padding: 0 20px;
     }
 
     .discord-button {
@@ -94,13 +96,6 @@
       background: #4752c4;
     }
 
-    @media (max-width: 600px) {
-      .popup-box {
-        width: 90%;
-      }
-    }
-
-    /* Scroll animation */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -111,11 +106,17 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    @media (max-width: 600px) {
+      .popup-box {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Popup -->
+  <!-- Welcome Popup -->
   <div id="welcomePopup" class="popup-overlay">
     <div class="popup-box">
       <h2>👋 Welcome to RevixMC</h2>
@@ -124,34 +125,47 @@
     </div>
   </div>
 
-  <!-- Logo / IP -->
+  <!-- Logo and IP -->
   <div class="logo">🔗 Server IP: <strong>revixmc.net</strong></div>
 
   <!-- Announcement -->
   <div class="announcement">
-    ⚠️ <strong>RevixMC is not released yet.</strong> We're gearing up for launch — join our Discord for early access news & giveaways!
+    ⚠️ <strong>RevixMC is not released yet.</strong> Join our Discord for early access and giveaways!
   </div>
 
-  <!-- Main Centered Content -->
+  <!-- Main Section -->
   <div class="centered reveal">
     <h1>Dominate. Defend. Destroy.</h1>
     <p>Welcome to <strong>RevixMC</strong> — a next-gen Minecraft PvP server built for true warriors.</p>
     <p>Currently Online: <span id="playerCount">Loading...</span></p>
   </div>
 
-  <!-- Scroll to Discord -->
+  <!-- Info Section -->
+  <div class="scroll-section reveal">
+    <h2>Why Isn't RevixMC Released Yet?</h2>
+    <p>
+      We're working hard to polish the experience — testing mechanics, optimizing lifesteal combat, and building infrastructure that can handle intense PvP action.
+    </p>
+    <br />
+    <h2>What Is RevixMC?</h2>
+    <p>
+      RevixMC is a pure <strong>Lifesteal-only</strong> Minecraft server. Kill players to steal their hearts. Raid, betray, or ally — all in a high-stakes, no-reset PvP world. No kits. No pay-to-win. Just raw skill and survival.
+    </p>
+  </div>
+
+  <!-- Discord Section -->
   <div class="scroll-section reveal">
     <h2>Join Our Community</h2>
     <a class="discord-button" href="https://discord.gg/xQyUyFkN" target="_blank">Join the Fight on Discord</a>
   </div>
 
   <script>
-    // Popup logic
+    // Welcome popup
     function closePopup() {
       document.getElementById('welcomePopup').style.display = 'none';
     }
 
-    // Player counter logic
+    // Live player counter
     const serverIP = "revixmc.net";
     const playerCountElement = document.getElementById("playerCount");
 
@@ -172,7 +186,7 @@
     updatePlayerCount();
     setInterval(updatePlayerCount, 10000);
 
-    // Scroll animation
+    // Scroll reveal animation
     function revealOnScroll() {
       const reveals = document.querySelectorAll('.reveal');
       for (const el of reveals) {
