@@ -1,81 +1,71 @@
-// server.js
-const express = require("express");
-const session = require("express-session");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const dotenv = require("dotenv");
-const path = require("path");
+```
 
-dotenv.config();
+---
 
-const app = express();
+📄 `style.css` (inside `/public`):
+```css
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
 
-// Setup session
-app.use(
-  session({
-    secret: "revix-secret", // Change this in production
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+.container {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
 
-app.use(passport.initialize());
-app.use(passport.session());
+span {
+  color: #00ffff;
+  font-weight: bold;
+}
 
-// Serialize user
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
+.google-button,
+.logout-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #4285F4;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+}
 
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+.google-button:hover,
+.logout-button:hover {
+  background-color: #357ae8;
+}
+```
 
-// Google Strategy setup
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
-    },
-    function (accessToken, refreshToken, profile, done) {
-      return done(null, profile);
+---
+
+📄 `script.js` (inside `/public`):
+```js
+const serverIP = "revixmc.net"; // Replace with your actual IP
+const playerCountElement = document.getElementById("playerCount");
+
+async function updatePlayerCount() {
+  try {
+    const response = await fetch(`https://api.mcsrvstat.us/2/${serverIP}`);
+    const data = await response.json();
+    if (data.online && data.players) {
+      playerCountElement.textContent = data.players.online;
+    } else {
+      playerCountElement.textContent = "Offline";
     }
-  )
-);
-
-// Static files
-app.use(express.static(path.join(__dirname, "public")));
-
-// Auth routes
-app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/login.html",
-    successRedirect: "/profile.html",
-  })
-);
-
-app.get("/logout", (req, res) => {
-  req.logout(() => {
-    res.redirect("/");
-  });
-});
-
-app.get("/user", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json({ loggedIn: true, user: req.user });
-  } else {
-    res.json({ loggedIn: false });
+  } catch (error) {
+    playerCountElement.textContent = "Error";
   }
-});
+}
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
+updatePlayerCount();
+setInterval(updatePlayerCount, 10000);
