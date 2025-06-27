@@ -1,30 +1,29 @@
-function updatePlayerCount() {
-  const count = Math.floor(Math.random() * 100) + 1;
-  document.getElementById('playerCount').textContent = count;
-}
-updatePlayerCount();
-setInterval(updatePlayerCount, 5000);
+// ==== Welcome Popup ====
 function closePopup() {
-  document.getElementById("welcomePopup").style.display = "none";
+  const popup = document.getElementById("welcomePopup");
+  popup.style.display = "none";
 }
 
-// Player counter (already in your script.js? Keep this too)
-const serverIP = "revixmc.net"; // Update if needed
-const countSpan = document.getElementById("playerCount");
+// ==== Real-Time Minecraft Player Count ====
+const serverIP = "revixmc.net"; // Replace with your actual server IP or domain
+const playerCountElement = document.getElementById("playerCount");
 
-async function fetchPlayerCount() {
+async function updatePlayerCount() {
   try {
-    const res = await fetch(`https://api.mcsrvstat.us/2/${serverIP}`);
-    const data = await res.json();
+    const response = await fetch(`https://api.mcsrvstat.us/2/${serverIP}`);
+    const data = await response.json();
+
     if (data.online && data.players) {
-      countSpan.textContent = data.players.online;
+      playerCountElement.textContent = data.players.online;
     } else {
-      countSpan.textContent = "Offline";
+      playerCountElement.textContent = "Offline";
     }
-  } catch (e) {
-    countSpan.textContent = "Error";
+  } catch (error) {
+    playerCountElement.textContent = "Error";
+    console.error("Failed to fetch player count:", error);
   }
 }
 
-fetchPlayerCount();
-setInterval(fetchPlayerCount, 10000);
+// Run immediately and refresh every 10 seconds
+updatePlayerCount();
+setInterval(updatePlayerCount, 10000);
