@@ -1,148 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>RevixMC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <title>RevixMC - Login</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Russo One', sans-serif;
-      background: url('https://images.pexels.com/photos/925743/pexels-photo-925743.jpeg') no-repeat center center fixed;
-      background-size: cover;
+      background: #0e0e0e;
       color: white;
+      font-family: Arial, sans-serif;
       text-align: center;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 30px;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .logo {
-      height: 50px;
-    }
-
-    nav a {
-      color: #00c3ff;
-      margin-left: 20px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-
-    .hero {
       padding: 100px 20px;
     }
 
     .btn {
       background: #00c3ff;
-      padding: 12px 30px;
+      color: black;
+      padding: 12px 25px;
       border: none;
       border-radius: 8px;
       font-size: 16px;
-      color: black;
       cursor: pointer;
+    }
+
+    #user-info {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 80px;
       margin-top: 20px;
       box-shadow: 0 0 10px #00c3ff;
     }
 
-    .staff {
-      background: rgba(0,0,0,0.6);
-      padding: 60px 20px;
-    }
-
-    .staff-grid {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .staff-card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
+    #welcomePopup {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1b1b1b;
+      padding: 30px;
       border-radius: 12px;
-      width: 200px;
+      box-shadow: 0 0 30px #00c3ffaa;
+      z-index: 9999;
     }
 
-    .staff-card img {
-      width: 80px;
-      border-radius: 50%;
+    #welcomePopup button {
+      margin-top: 20px;
     }
 
-    .admin {
-      padding: 60px 20px;
-      background: rgba(0, 0, 0, 0.8);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    footer {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      font-size: 14px;
-      color: #aaa;
-      font-style: italic;
-      line-height: 1.6;
+    .counter {
+      margin-top: 40px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://i.imgur.com/Qr2bThh.png" alt="RevixMC Logo" class="logo" />
-    <nav>
-      <a href="#hero">Home</a>
-      <a href="#staff">Staff</a>
-      <a href="#" onclick="showAdmin()">Admin Dashboard</a>
-    </nav>
-  </header>
+  <!-- Welcome Popup -->
+  <div id="welcomePopup">
+    <h2>Welcome to RevixMC!</h2>
+    <p>Enjoy the best PvP experience</p>
+    <button class="btn" onclick="closePopup()">Close</button>
+  </div>
 
-  <section id="hero" class="hero">
-    <h1>Welcome to RevixMC</h1>
-    <p>The ultimate Minecraft PvP experience. Join now and dominate the battlefield.</p>
-    <a href="https://discord.gg/xQyUyFkN" target="_blank"><button class="btn">Join Discord</button></a>
-  </section>
+  <h1>RevixMC Login</h1>
+  <p>Login with Discord to continue</p>
 
-  <section id="staff" class="staff">
-    <h2>Our Staff</h2>
-    <div class="staff-grid">
-      <div class="staff-card">
-        <img src="https://i.imgur.com/1XqZ1Zm.png" alt="Owner" />
-        <h3>Nebula</h3>
-        <p>Owner</p>
-      </div>
-      <div class="staff-card">
-        <img src="https://i.imgur.com/fnLVCaF.png" alt="Moderator" />
-        <h3>Shadow</h3>
-        <p>Moderator</p>
-      </div>
-    </div>
-  </section>
+  <!-- Login Section -->
+  <div id="login-section">
+    <a class="btn" href="/auth/discord">Login with Discord</a>
+  </div>
 
-  <section id="admin" class="admin hidden">
-    <h2>Admin Dashboard</h2>
-    <p>Welcome, Admin!</p>
-    <button class="btn">Post Announcement</button>
-    <button class="btn">Add Staff</button>
-  </section>
+  <!-- User Info After Login -->
+  <div id="user-info" style="display: none;">
+    <p id="username"></p>
+    <img id="avatar" src="" alt="User Avatar" />
+    <br /><br />
+    <a href="/logout"><button class="btn">Logout</button></a>
+  </div>
 
-  <footer>
-    <p>© 2025 - starcodenebula and da_flame_slayer</p>
-    <p>RevixMC™ by starcodenebula</p>
-    <p>Not Affiliated With Mojang Studios.</p>
-  </footer>
+  <!-- Player Counter -->
+  <div class="counter">
+    <p>Players Online: <span id="playerCount">Loading...</span></p>
+  </div>
 
+  <!-- Scripts -->
   <script>
-    function showAdmin() {
-      document.getElementById('admin').classList.remove('hidden');
+    // Welcome Popup Close
+    function closePopup() {
+      document.getElementById("welcomePopup").style.display = "none";
     }
+
+    // Get current user from backend
+    fetch("/user")
+      .then(res => res.json())
+      .then(user => {
+        if (user && user.username) {
+          document.getElementById("login-section").style.display = "none";
+          document.getElementById("user-info").style.display = "block";
+          document.getElementById("username").innerText = `Welcome, ${user.username}#${user.discriminator}`;
+          document.getElementById("avatar").src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+        }
+      });
+
+    // Minecraft Player Count
+    const serverIP = "revixmc.net";
+    const playerCountElement = document.getElementById("playerCount");
+
+    async function updatePlayerCount() {
+      try {
+        const response = await fetch(`https://api.mcsrvstat.us/2/${serverIP}`);
+        const data = await response.json();
+
+        if (data.online && data.players) {
+          playerCountElement.textContent = data.players.online;
+        } else {
+          playerCountElement.textContent = "Offline";
+        }
+      } catch (error) {
+        playerCountElement.textContent = "Error";
+        console.error("Player count fetch failed:", error);
+      }
+    }
+
+    updatePlayerCount();
+    setInterval(updatePlayerCount, 10000);
   </script>
 </body>
 </html>
