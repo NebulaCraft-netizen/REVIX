@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RevixMC – Minecraft Lifesteal Server</title>
+  <title>RevixMC | Minecraft PvP Server</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -14,9 +17,39 @@
       color: white;
     }
 
+    /* Navbar */
+    nav {
+      background: #111;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f0c420;
+    }
+
+    /* Hero */
     header {
-      background: url('https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&h=1080') center / cover no-repeat;
       height: 100vh;
+      background: url('https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&h=1080') center / cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -26,12 +59,13 @@
 
     header h1 {
       font-size: 3rem;
-      margin-bottom: 0.5rem;
+      animation: fadeIn 1s ease-in-out;
     }
 
     header p {
       font-size: 1.2rem;
-      margin-bottom: 2rem;
+      margin-top: 10px;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .ip-box {
@@ -40,45 +74,12 @@
       border-radius: 10px;
       font-size: 1.1rem;
       font-weight: bold;
-      display: inline-block;
+      margin-top: 20px;
       user-select: all;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    nav {
-      background: #111;
-      padding: 12px 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1100px;
-      margin: auto;
-      padding: 0 20px;
-    }
-
-    .nav-logo {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: white;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #f0c420;
-    }
-
+    /* Features */
     section {
       padding: 80px 20px;
       max-width: 1100px;
@@ -89,7 +90,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
-      margin-top: 40px;
     }
 
     .feature-box {
@@ -97,34 +97,93 @@
       padding: 30px;
       border-radius: 10px;
       text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-box:hover {
+      transform: scale(1.05);
     }
 
     .feature-box h3 {
       color: #f0c420;
     }
 
-    .discord-btn {
-      display: inline-block;
-      background: #5865f2;
-      color: white;
-      padding: 14px 30px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-      margin-top: 40px;
+    .center-btns {
+      text-align: center;
+      margin-top: 50px;
     }
 
-    .discord-btn:hover {
+    .btn {
+      background: #5865f2;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 10px;
+      transition: background 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn:hover {
       background: #4752c4;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 40px;
       background: #111;
       color: #777;
-      font-size: 0.9rem;
+    }
+
+    /* Sign In Modal */
+    #signinModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .modal-content input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .modal-content button {
+      background: #f0c420;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .modal-close {
+      margin-top: 20px;
+      color: #aaa;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -132,52 +191,67 @@
 
   <!-- Navbar -->
   <nav>
-    <div class="nav-container">
-      <div class="nav-logo">RevixMC</div>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#discord">Discord</a>
-      </div>
+    <div class="nav-logo">RevixMC</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#" onclick="openModal()">Sign In</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <header>
     <h1>Welcome to RevixMC</h1>
-    <p>The ultimate Minecraft Lifesteal PvP server</p>
+    <p>The Ultimate Lifesteal PvP Minecraft Server</p>
     <div class="ip-box">revixmc.net</div>
   </header>
 
   <!-- Features -->
   <section id="features">
-    <h2 style="text-align:center;">🔥 Server Features</h2>
+    <h2 style="text-align:center;">🔥 Features</h2>
     <div class="features">
       <div class="feature-box">
-        <h3>⚔️ Lifesteal Only</h3>
-        <p>Gain hearts by defeating players. High-stakes PvP action every match.</p>
+        <h3>⚔️ Lifesteal PvP</h3>
+        <p>Kill players to steal their hearts. The most intense combat system yet.</p>
       </div>
       <div class="feature-box">
         <h3>🛡️ Anti-Cheat</h3>
-        <p>Play with confidence. Our server blocks cheaters instantly.</p>
+        <p>Clean, fair gameplay with advanced protection.</p>
       </div>
       <div class="feature-box">
-        <h3>🎮 Lag-Free Hosting</h3>
-        <p>Enjoy ultra-smooth PvP combat with optimized performance.</p>
+        <h3>🏆 Tournaments</h3>
+        <p>Join weekly events and compete for glory and rewards.</p>
       </div>
+    </div>
+
+    <div class="center-btns">
+      <a class="btn" href="https://discord.gg/xQyUyFkN" target="_blank">Join Discord</a>
     </div>
   </section>
 
-  <!-- Discord -->
-  <section id="discord" style="text-align:center;">
-    <h2>💬 Join Our Discord</h2>
-    <p>Get announcements, updates, and chat with the RevixMC community.</p>
-    <a class="discord-btn" href="https://discord.gg/xQyUyFkN" target="_blank">Join Our Discord</a>
-  </section>
+  <!-- Sign In Modal -->
+  <div id="signinModal">
+    <div class="modal-content">
+      <h2>🔐 Sign In</h2>
+      <input type="text" placeholder="Username or Email" />
+      <input type="password" placeholder="Password" />
+      <button>Log In</button>
+      <div class="modal-close" onclick="closeModal()">Close</div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
-    © 2025 RevixMC. All Rights Reserved. This site is fan-made and not affiliated with Mojang.
+    &copy; 2025 RevixMC — Not affiliated with Mojang. Site by @yourname
   </footer>
 
+  <!-- JS -->
+  <script>
+    function openModal() {
+      document.getElementById('signinModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('signinModal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
