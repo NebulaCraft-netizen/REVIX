@@ -1,9 +1,8 @@
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+/*  font-family: 'Segoe UI', sans-serif;background: linear-gradient(to right, #0f2027, #203a43, #2c5364);*/
  background: linear-gradient(to bottom, #ffe0b2, #ffb74d, #ffa726, #fb8c00, #ef6c00);
-
   color: white;
   padding: 0;
   scroll-behavior: smooth;
