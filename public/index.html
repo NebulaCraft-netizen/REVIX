@@ -8,7 +8,10 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+  <!-- Background -->
   <div class="background-overlay"></div>
+
+  <!-- Header with logo and nav -->
   <header>
     <img src="revixmc-logo.png" alt="RevixMC Logo" class="logo" />
     <nav>
@@ -18,16 +21,23 @@
       <div id="signin-btn"></div>
     </nav>
   </header>
+
+  <!-- Main Content -->
   <main>
     <h1 class="title">Welcome to <span class="highlight">RevixMC</span></h1>
     <p class="subtitle">A Next-Gen Minecraft Experience</p>
     <p class="player-counter" id="player-count">Players Online: Loading...</p>
+
+    <!-- Animated Buttons -->
     <div class="buttons">
       <button class="animated-btn" id="copy-ip">Copy Server IP</button>
       <a href="https://discord.gg/xQyUyFkN" class="animated-btn" target="_blank">Join Discord</a>
     </div>
+
     <p class="server-ip-note" id="copy-result"></p>
   </main>
+
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
