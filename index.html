@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RevixMC - Minecraft Server</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <div class="background-overlay"></div>
+  <header>
+    <img src="revixmc-logo.png" alt="RevixMC Logo" class="logo" />
+    <nav>
+      <a href="#">Home</a>
+      <a href="https://discord.gg/xQyUyFkN" target="_blank">Discord</a>
+      <a id="admin-section" style="display: none;">Admin Panel</a>
+      <div id="signin-btn"></div>
+    </nav>
+  </header>
+  <main>
+    <h1 class="title">Welcome to <span class="highlight">RevixMC</span></h1>
+    <p class="subtitle">A Next-Gen Minecraft Experience</p>
+    <p class="player-counter" id="player-count">Players Online: Loading...</p>
+    <div class="buttons">
+      <button class="animated-btn" id="copy-ip">Copy Server IP</button>
+      <a href="https://discord.gg/xQyUyFkN" class="animated-btn" target="_blank">Join Discord</a>
+    </div>
+    <p class="server-ip-note" id="copy-result"></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
