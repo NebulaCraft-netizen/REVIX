@@ -29,7 +29,7 @@
   </header>
 
   <section id="hero" class="hero full-screen fade-in">
-    <h1 class="slide-in">Welcome to ValorMC</h1>
+    <h1 class="slide-in">Welcome to REVIXMC</h1>
     <p class="fade-in-delay">Can't wait to play? Neither can we. A new era of Minecraft is coming.</p>
     <div class="welcome-message fade-in">
       <p>🎉 Welcome to our official site! Explore features, join our Discord, and get ready for battle!</p>
@@ -117,5 +117,33 @@
 
 
   <script src="script.js"></script>
+  <script>
+  const CLIENT_ID = '123456789012-abc123def456.apps.googleusercontent.com'; // Replace with yours
+
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: CLIENT_ID,
+      callback: handleCredentialResponse
+    });
+
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      google.accounts.id.prompt(); // Opens the Google Sign-In popup
+    });
+  };
+
+  function handleCredentialResponse(response) {
+    // This token can be sent to your backend for verification
+    const token = response.credential;
+
+    // Decode token to get user info (optional, for frontend use)
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    console.log('User Info:', payload);
+
+    alert(`Welcome, ${payload.name}!`);
+
+    // You can now store session data, redirect, or show admin-only UI
+  }
+</script>
+
 </body>
 </html>
