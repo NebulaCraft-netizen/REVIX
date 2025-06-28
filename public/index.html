@@ -2,42 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RevixMC - Minecraft Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ValorMC</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-  <!-- Background -->
-  <div class="background-overlay"></div>
-
-  <!-- Header with logo and nav -->
   <header>
-    <img src="revixmc-logo.png" alt="RevixMC Logo" class="logo" />
-    <nav>
-      <a href="#">Home</a>
-      <a href="https://discord.gg/xQyUyFkN" target="_blank">Discord</a>
-      <a id="admin-section" style="display: none;">Admin Panel</a>
-      <div id="signin-btn"></div>
-    </nav>
+    <img src="https://i.imgur.com/BcRK6WJ.png" alt="ValorMC Logo" class="logo" />
+    <button id="loginBtn">Sign in with Google</button>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <h1 class="title">Welcome to <span class="highlight">RevixMC</span></h1>
-    <p class="subtitle">A Next-Gen Minecraft Experience</p>
-    <p class="player-counter" id="player-count">Players Online: Loading...</p>
+  <section class="hero">
+    <h1 class="slide-in">Welcome to ValorMC</h1>
+    <p class="fade-in">Can't wait to play? Neither can we.</p>
+  </section>
 
-    <!-- Animated Buttons -->
-    <div class="buttons">
-      <button class="animated-btn" id="copy-ip">Copy Server IP</button>
-      <a href="https://discord.gg/xQyUyFkN" class="animated-btn" target="_blank">Join Discord</a>
-    </div>
+  <section class="info slide-up">
+    <h2>🔥 Join Our Discord</h2>
+    <ul>
+      <li>🎉 Weekly giveaways and events</li>
+      <li>🛡️ PvP tips and rank discussions</li>
+      <li>🤖 Custom Discord bots</li>
+      <li>🎥 Share your best Minecraft clips</li>
+    </ul>
+    <a href="https://discord.gg/xQyUyFkN" class="btn" target="_blank">Join Discord</a>
+  </section>
 
-    <p class="server-ip-note" id="copy-result"></p>
-  </main>
+  <section id="userInfo" class="fade-in"></section>
 
-  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
