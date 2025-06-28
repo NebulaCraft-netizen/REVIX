@@ -51,6 +51,69 @@
       color: white;
       padding: 2rem;
     }
+
+    #loadingScreen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 9999;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.07);
+      padding: 20px;
+      border-radius: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: scale(1.2); /* very small zoom */
+    }
+
+    .icon-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+
+    .icon-title img {
+      width: 30px;
+      height: 30px;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      height: 400px;
+    }
   </style>
 
   <link rel="stylesheet" href="style.css" />
@@ -104,7 +167,7 @@
     <a href="https://discord.gg/xQyUyFkN" class="btn" target="_blank">Join Our Discord</a>
   </section>
 
-  <section id="testimonials" class="testimonials fade-in">
+  <!-- <section id="testimonials" class="testimonials fade-in">
     <h2>💬 What Players Are Saying</h2>
     <div class="testimonial">
       <p>"REVIXMC is the best server I’ve ever played. The community is amazing!"</p>
@@ -119,9 +182,31 @@
       <p>"Joined for the gameplay, stayed for the vibes. Join now!"</p>
       <span>- @ChillMiner</span>
     </div>
-  </section>
+  </section> -->
 
   <section id="userInfo" class="fade-in"></section>
+
+
+  <section>
+    <div class="icon-title">
+      <img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" alt="Chat Icon" />
+      <strong>What Players Are Saying</strong>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial-card">
+        "REVIXMC is the best server I’ve ever played. The community is amazing!"<br />
+        - @BlockMaster99
+      </div>
+      <div class="testimonial-card">
+        "Epic PvP battles and daily events – never a dull moment here."<br />
+        - @CrystalPvPer
+      </div>
+      <div class="testimonial-card">
+        "Joined for the gameplay, stayed for the vibes. Join now!"<br />
+        - @ChillMiner
+      </div>
+    </div>
+  </section>
 
 
 
