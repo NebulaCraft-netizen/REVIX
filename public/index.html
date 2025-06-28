@@ -1,56 +1,43 @@
-**Full Working RevixMC Website Setup**
-
----
-
-📄 `index.html` (inside `/public`):
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RevixMC</title>
+  <title>RevixMC - Minecraft Server</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to <span>RevixMC</span></h1>
-    <p>Players online: <span id="playerCount">Loading...</span></p>
-    <a class="google-button" href="/auth/google">Login with Google</a>
-  </div>
+  <!-- Background -->
+  <div class="background-overlay"></div>
+
+  <!-- Header with logo and nav -->
+  <header>
+    <img src="revixmc-logo.png" alt="RevixMC Logo" class="logo" />
+    <nav>
+      <a href="#">Home</a>
+      <a href="https://discord.gg/xQyUyFkN" target="_blank">Discord</a>
+      <a id="admin-section" style="display: none;">Admin Panel</a>
+      <div id="signin-btn"></div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h1 class="title">Welcome to <span class="highlight">RevixMC</span></h1>
+    <p class="subtitle">A Next-Gen Minecraft Experience</p>
+    <p class="player-counter" id="player-count">Players Online: Loading...</p>
+
+    <!-- Animated Buttons -->
+    <div class="buttons">
+      <button class="animated-btn" id="copy-ip">Copy Server IP</button>
+      <a href="https://discord.gg/xQyUyFkN" class="animated-btn" target="_blank">Join Discord</a>
+    </div>
+
+    <p class="server-ip-note" id="copy-result"></p>
+  </main>
+
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
-```
-
----
-
-📄 `profile.html` (inside `/public`):
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RevixMC Profile</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1>You're logged in!</h1>
-    <p id="userInfo">Loading user...</p>
-    <a class="logout-button" href="/logout">Logout</a>
-  </div>
-
-  <script>
-    fetch("/user").then(res => res.json()).then(data => {
-      document.getElementById("userInfo").innerHTML = `Welcome, ${data.displayName}!`;
-    }).catch(() => {
-      document.getElementById("userInfo").innerHTML = "You're not logged in.";
-    });
-  </script>
-</body>
-</html>
-
-
-
