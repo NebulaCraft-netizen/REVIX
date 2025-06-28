@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(to right, #1f2027, #203a43, #2c53aa);
   color: white;
   padding: 0;
   scroll-behavior: smooth;
@@ -12,7 +12,7 @@ header.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(0, 0, 0, 0.8);
+/*  background: rgba(0, 0, 0, 0.8);*/
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
@@ -100,7 +100,7 @@ header.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(0, 0, 0, 0.8);
+/*  background: rgba(0, 0, 0, 0.8);*/
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
