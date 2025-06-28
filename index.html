@@ -6,6 +6,7 @@
   <title>REVIXMC</title>
   <title>REVIXMC</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
   <header class="navbar">
@@ -120,30 +121,30 @@
   <script>
   const CLIENT_ID = '123456789012-abc123def456.apps.googleusercontent.com'; // Replace with yours
 
-  window.onload = function () {
+  window.onload = () => {
     google.accounts.id.initialize({
-      client_id: CLIENT_ID,
+      client_id: clientId,
       callback: handleCredentialResponse
     });
 
     document.getElementById('loginBtn').addEventListener('click', () => {
-      google.accounts.id.prompt(); // Opens the Google Sign-In popup
+      google.accounts.id.prompt(); // This shows the Google login popup
     });
   };
 
   function handleCredentialResponse(response) {
-    // This token can be sent to your backend for verification
+    // This is where you handle the login result
     const token = response.credential;
 
-    // Decode token to get user info (optional, for frontend use)
+    // Optionally: Send token to your server to verify + create session
+    console.log('Google token:', token);
+
+    // Decode token (optional)
     const payload = JSON.parse(atob(token.split('.')[1]));
-    console.log('User Info:', payload);
-
-    alert(`Welcome, ${payload.name}!`);
-
-    // You can now store session data, redirect, or show admin-only UI
+    alert("Signed in as: " + payload.email);
   }
 </script>
+
 
 </body>
 </html>
